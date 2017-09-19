@@ -13,8 +13,12 @@ $.ajax({
     console.log( "Request received:", data );
     	for (let value of data) {
 			console.log(value.parkname);
-			$("#park-content").append('<div class="new-park">' + value.parkname + '</div>')
+			if (value.location_1) {
+				$("#park-content").append('<div class="new-park">' + value.parkname + '<br>' + 'park type: ' + value.parktype + '<br>' + 'latitude: ' + value.location_1.coordinates[0] + '<br>' + 'longitude: ' + value.location_1.coordinates[1] + '</div>')
+			}
+			
 		}
+		console.log(data)
   },
   error: function( jqxhr, status, error ){
     console.log( "Something went wrong!" );
